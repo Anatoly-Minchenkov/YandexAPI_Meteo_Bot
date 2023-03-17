@@ -44,8 +44,8 @@ async def user_city_chosen(message: types.Message, state: FSMContext):
     try:
         data = request.get_weather(message.text)
     except:
-        await message.answer('Такой город не обнаружен. Повторите попытку')
-        return
+        await message.answer('Истёк срок пробной версии API')
+        await state.finish()
     await state.update_data(waiting_user_city=message.text)
     user_data = await state.get_data()
     orm.set_user_city(message.from_user.id,
@@ -69,7 +69,7 @@ async def get_city_weather(message: types.Message):
     try:
         data = request.get_weather(home_city)
     except:
-        await message.answer('Такой город не обнаружен. Повторите попытку')
+        await message.answer('Истёк срок пробной версии API')
         return
     orm.create_report(message.from_user.id, data["temp"], data["feels_like"], data["wind_speed"], data["pressure_mm"],
                       home_city)
@@ -106,8 +106,8 @@ async def city_chosen(message: types.Message, state: FSMContext):
     try:
         data = request.get_weather(city.get('waiting_city'))  # обращаемся к API, передаём город
     except:
-        await message.answer('Такой город не обнаружен. Повторите попытку')
-        return
+        await message.answer('Истёк пробный срок API')
+        await state.finish()
     orm.create_report(message.from_user.id, data["temp"], data["feels_like"], data["wind_speed"], data["pressure_mm"],
                       city.get('waiting_city'))
     text = f'Погода в {city.get("waiting_city")}\nТемпература: {data["temp"]} C\nОщущается как: {data["feels_like"]} C \nСкорость ветра: {data["wind_speed"]}м/с\nДавление: {data["pressure_mm"]}мм'
