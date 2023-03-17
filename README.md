@@ -15,8 +15,8 @@ Bot link: https://t.me/yandex_weather_checker_bot (Not deployed yet.)
 
 ### :computer: Technologies:
 - Aiogram;
-- Docker;
-- PostgreSql (SQLAlchemy).
+- Docker (Compose);
+- DataBases (PostgreSQL, SQLAlchemy).
 ---
 
 
