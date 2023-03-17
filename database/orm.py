@@ -8,7 +8,7 @@ from .models import Base, User, WeatherReport
 
 load_dotenv(find_dotenv())
 
-engine = create_engine(getenv('url'), echo=True)
+engine = create_engine(getenv('URL'), echo=True)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
