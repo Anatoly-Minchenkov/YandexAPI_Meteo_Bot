@@ -34,4 +34,4 @@ Bot link: https://t.me/yandex_weather_checker_bot (Not deployed yet.)
 
   **Optional**
 
-3. You can set up a project from docker-compose by using the command "docker-compose up --build"
+3. You can set up a project from docker-compose by using the command "docker-compose up"
