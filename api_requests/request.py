@@ -6,11 +6,13 @@ import requests
 
 load_dotenv(find_dotenv())
 
+
 def get_city_coord(city):
     payload = {'geocode': city, 'apikey': getenv('GEO_KEY'), 'format': 'json'}
     r = requests.get('https://geocode-maps.yandex.ru/1.x', params=payload)
     geo = json.loads(r.text)
     return geo['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos']
+
 
 def get_weather(city):
     coordinates = get_city_coord(city).split()
@@ -18,6 +20,3 @@ def get_weather(city):
     r = requests.get('https://api.weather.yandex.ru/v2/forecast', params=payload, headers=eval(getenv('WEATHER_KEY')))
     weather_data = json.loads(r.text)
     return weather_data['fact']
-
-
-

@@ -2,13 +2,11 @@ version: '3.8'
 
 services:
   bot:
-    container_name: bot
+    container_name: yandex_bot
     build: .
   db:
-    container_name: db
+    container_name: db_yandex
     ports:
-      - '1234:5432'
-    environment:
-      - POSTGRES_PASSWORD=Nsujvjctr123
-      - POSTGRES_USER=postgres
+      - '1235:5432'
+
     image: postgres:14.5

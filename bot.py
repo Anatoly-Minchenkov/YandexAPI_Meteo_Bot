@@ -11,7 +11,6 @@ from os import getenv
 
 load_dotenv(find_dotenv())
 
-
 bot = Bot(token=getenv('BOT_TOKEN'))
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
